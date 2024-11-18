@@ -1,7 +1,7 @@
 extends Node2D
 
 var scroll_speed: float = 100 
-var pipe_scene: PackedScene = preload("res://pipe.tscn")
+var pipe_scene: PackedScene = preload("res://Scenes/pipe.tscn")
 var loaded_pipes: Array[StaticBody2D]
 var bird_pos: Vector2 = Vector2.ZERO
 var pipe_offset: float = 50

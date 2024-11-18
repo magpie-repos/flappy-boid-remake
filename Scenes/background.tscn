@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkunxy0048ijw"]
+
+[ext_resource type="Script" path="res://Scenes/background.gd" id="1_rumlm"]
+
+[sub_resource type="Gradient" id="Gradient_ivgw2"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_51q15"]
+gradient = SubResource("Gradient_ivgw2")
+width = 256
+height = 256
+
+[sub_resource type="Gradient" id="Gradient_cul3n"]
+colors = PackedColorArray(0.478431, 0.478431, 0.478431, 1, 0.478431, 0.478431, 0.478431, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ltjk2"]
+gradient = SubResource("Gradient_cul3n")
+
+[sub_resource type="Gradient" id="Gradient_jpn02"]
+colors = PackedColorArray(0.47788, 0.47788, 0.47788, 1, 0.478431, 0.478431, 0.478431, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_glj2k"]
+gradient = SubResource("Gradient_jpn02")
+
+[sub_resource type="Gradient" id="Gradient_oqy18"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bius4"]
+gradient = SubResource("Gradient_oqy18")
+
+[node name="Background" type="Node2D" node_paths=PackedStringArray("hill_l", "hill_m", "hill_s")]
+z_index = -1
+script = ExtResource("1_rumlm")
+hill_l = NodePath("BlackFill/HillLarge")
+hill_m = NodePath("BlackFill/HillMed")
+hill_s = NodePath("BlackFill/HillSmall")
+
+[node name="BlackFill" type="Sprite2D" parent="."]
+z_index = -2
+texture = SubResource("GradientTexture2D_51q15")
+centered = false
+
+[node name="HorizonLine" type="Sprite2D" parent="BlackFill"]
+position = Vector2(0, 212)
+scale = Vector2(4, 0.046875)
+texture = SubResource("GradientTexture2D_ltjk2")
+centered = false
+
+[node name="HillLarge" type="Sprite2D" parent="BlackFill"]
+position = Vector2(305.41, 164.37)
+scale = Vector2(1.319, 1.565)
+texture = SubResource("GradientTexture2D_glj2k")
+
+[node name="HillFill" type="Sprite2D" parent="BlackFill/HillLarge"]
+scale = Vector2(0.925, 0.95)
+texture = SubResource("GradientTexture2D_bius4")
+
+[node name="HillMed" type="Sprite2D" parent="BlackFill"]
+position = Vector2(306.98, 177.74)
+scale = Vector2(0.909, 1.11)
+texture = SubResource("GradientTexture2D_glj2k")
+
+[node name="HillFill" type="Sprite2D" parent="BlackFill/HillMed"]
+scale = Vector2(0.925, 0.95)
+texture = SubResource("GradientTexture2D_bius4")
+
+[node name="HillSmall" type="Sprite2D" parent="BlackFill"]
+position = Vector2(309.495, 196.8)
+scale = Vector2(0.614, 0.485)
+texture = SubResource("GradientTexture2D_glj2k")
+
+[node name="HillFill" type="Sprite2D" parent="BlackFill/HillSmall"]
+scale = Vector2(0.925, 0.95)
+texture = SubResource("GradientTexture2D_bius4")

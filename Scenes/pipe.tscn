@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://k4m07v148voj"]
 
-[ext_resource type="Script" path="res://pipe.gd" id="1_x1etq"]
+[ext_resource type="Script" path="res://Scripts/pipe.gd" id="1_b7nlq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmyqh"]
 size = Vector2(32, 320)
@@ -15,7 +15,7 @@ gradient = SubResource("Gradient_tji63")
 size = Vector2(32, 320)
 
 [node name="Pipe" type="StaticBody2D"]
-script = ExtResource("1_x1etq")
+script = ExtResource("1_b7nlq")
 
 [node name="TopPipe" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.5)
