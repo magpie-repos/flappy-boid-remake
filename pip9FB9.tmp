@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://k4m07v148voj"]
+
+[ext_resource type="Script" path="res://pipe.gd" id="1_x1etq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydypc"]
+size = Vector2(32, 320)
+
+[sub_resource type="Gradient" id="Gradient_tji63"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_54urc"]
+gradient = SubResource("Gradient_tji63")
+
+[node name="Pipe" type="StaticBody2D"]
+script = ExtResource("1_x1etq")
+
+[node name="TopPipe" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ydypc")
+
+[node name="Sprite2D" type="Sprite2D" parent="TopPipe"]
+scale = Vector2(0.5, 5)
+texture = SubResource("GradientTexture2D_54urc")
+
+[node name="BottomPipe" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ydypc")
+
+[node name="Sprite2D" type="Sprite2D" parent="BottomPipe"]
+scale = Vector2(0.5, 5)
+texture = SubResource("GradientTexture2D_54urc")

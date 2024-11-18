@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://vxqdtihdmo8o"]
+
+[ext_resource type="Script" path="res://Scripts/bird.gd" id="1_rvhik"]
+
+[sub_resource type="Gradient" id="Gradient_vr5jq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mnr8l"]
+gradient = SubResource("Gradient_vr5jq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjmrs"]
+size = Vector2(56, 56)
+
+[node name="Bird" type="RigidBody2D" groups=["bird"]]
+mass = 0.1
+gravity_scale = 0.45
+script = ExtResource("1_rvhik")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_mnr8l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_mjmrs")
+
+[node name="FlapCooldown" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

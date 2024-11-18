@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://coicvsnd6a3gc"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_2ltlt"]
+[ext_resource type="Script" path="res://Scenes/pipe_manager.gd" id="2_fqbq3"]
+[ext_resource type="Script" path="res://Scenes/pause_manager.gd" id="3_8p8dl"]
+
+[sub_resource type="Gradient" id="Gradient_ivgw2"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_51q15"]
+gradient = SubResource("Gradient_ivgw2")
+width = 256
+height = 256
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fttil"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_olwr3"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("pause_timer")]
+script = ExtResource("1_2ltlt")
+pause_timer = NodePath("")
+
+[node name="PauseManager" type="Node2D" parent="." node_paths=PackedStringArray("score_label", "press_space_label")]
+process_mode = 3
+script = ExtResource("3_8p8dl")
+score_label = NodePath("../UI/MarginContainer/CenterContainer/Score")
+press_space_label = NodePath("../UI/MarginContainer/CenterContainer/PressSpace")
+
+[node name="Background" type="Node2D" parent="."]
+z_index = -1
+
+[node name="BlackFill" type="Sprite2D" parent="Background"]
+z_index = -2
+texture = SubResource("GradientTexture2D_51q15")
+centered = false
+
+[node name="Hill" type="Sprite2D" parent="Background"]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 256.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="UI/MarginContainer/CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.419813, 0.419813, 0.419813, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 50
+text = "##"
+
+[node name="PressSpace" type="Label" parent="UI/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.419608, 0.419608, 0.419608, 1)
+theme_override_font_sizes/font_size = 20
+text = "press space"
+
+[node name="PipeManager" type="Node2D" parent="."]
+script = ExtResource("2_fqbq3")
+
+[node name="PipeSpawnTimer" type="Timer" parent="PipeManager"]
+wait_time = 2.0
+
+[node name="WorldBorderTop" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderTop"]
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_fttil")
+
+[node name="WorldBorderBottom" type="StaticBody2D" parent="." groups=["death_zone"]]
+position = Vector2(0, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderBottom"]
+shape = SubResource("WorldBoundaryShape2D_olwr3")
+
+[connection signal="pipe_cleared" from="PipeManager" to="." method="_on_pipe_cleared"]
+[connection signal="timeout" from="PipeManager/PipeSpawnTimer" to="PipeManager" method="_on_pipe_spawn_timer_timeout"]
