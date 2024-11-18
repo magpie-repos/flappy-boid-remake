@@ -1,7 +1,6 @@
 extends Node2D
 class_name PauseManage
 
-var paused: bool = true
 @export var score_label: Label
 @export var pause_ui: Control
 
