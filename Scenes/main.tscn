@@ -100,7 +100,7 @@ position = Vector2(0, 256)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorderBottom"]
 shape = SubResource("WorldBoundaryShape2D_olwr3")
 
-[node name="LooseSFX" type="AudioStreamPlayer" parent="."]
+[node name="LoseSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_xevf5")
 

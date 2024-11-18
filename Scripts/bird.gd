@@ -9,7 +9,7 @@ signal died
 @onready var bird_size: Vector2 = $Sprite2D.texture.get_size()
 
 func _ready() -> void:
-	##Enable tracking what 
+	##Enable tracking to get direct collision information
 	set_contact_monitor(true)
 	set_max_contacts_reported(1)
 	
@@ -18,7 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	##Handle player input for bird movement
 	if Input.is_action_just_pressed("flap") && $FlapCooldown.is_stopped():
-		apply_impulse(Vector2.UP * jump_height)##Move thingy up
+		apply_impulse(Vector2.UP * jump_height)##Move bird up
 		$FlapCooldown.start()##Prevent jump spam
 
 func _on_body_entered(body: Node) -> void:

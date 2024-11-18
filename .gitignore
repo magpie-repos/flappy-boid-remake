@@ -3,4 +3,5 @@
 /android/
 ##Other ignores
 *.tmp
+*.cfg
 Builds

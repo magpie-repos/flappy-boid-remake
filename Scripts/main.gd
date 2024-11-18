@@ -44,10 +44,10 @@ func reset_game() -> void:
 	pause_manager.pause_game()	
 
 func _on_bird_died():
-	$LooseSFX.pitch_scale = randf_range(0.95, 1.05)
-	$LooseSFX.play()
+	$LoseSFX.pitch_scale = randf_range(0.95, 1.05)
+	$LoseSFX.play()
 	$PipeClearSFX.stop()
-	#Rmove old bird
+	#Remove old bird
 	bird.died.disconnect(_on_bird_died)
 	bird.queue_free()
 	reset_game()
