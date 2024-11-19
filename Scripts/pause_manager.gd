@@ -4,6 +4,8 @@ class_name PauseManage
 @export var score_label: Label
 @export var pause_ui: Control
 
+var paused = true
+
 func _ready() -> void:
 	pause_game()
 	

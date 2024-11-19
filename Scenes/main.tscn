@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/pause_manager.gd" id="3_8p8dl"]
 [ext_resource type="PackedScene" uid="uid://bkunxy0048ijw" path="res://Scenes/background.tscn" id="3_bxex7"]
 [ext_resource type="AudioStream" uid="uid://b03g01drwjboc" path="res://SFX/loose_sfx.wav" id="5_xevf5"]
-[ext_resource type="AudioStream" uid="uid://2xr06hj0hqyx" path="res://SFX/pipe_clear_sfx.wav" id="6_dgv0a"]
+[ext_resource type="AudioStream" uid="uid://b7v02b3nel5kb" path="res://SFX/pipe_clear2_sfx.wav" id="6_3vjp1"]
 
 [sub_resource type="Gradient" id="Gradient_afjla"]
 offsets = PackedFloat32Array(0, 0.993506)
@@ -103,9 +103,11 @@ shape = SubResource("WorldBoundaryShape2D_olwr3")
 [node name="LoseSFX" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("5_xevf5")
+volume_db = -0.5
 
 [node name="PipeClearSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_dgv0a")
+stream = ExtResource("6_3vjp1")
+volume_db = -6.0
 
 [connection signal="pipe_cleared" from="PipeManager" to="." method="_on_pipe_cleared"]
 [connection signal="timeout" from="PipeManager/PipeSpawnTimer" to="PipeManager" method="_on_pipe_spawn_timer_timeout"]
